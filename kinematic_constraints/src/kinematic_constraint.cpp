@@ -597,9 +597,9 @@ kinematic_constraints::ConstraintEvaluationResult kinematic_constraints::Orienta
   xyz(0) = std::min(fabs(xyz(0)), boost::math::constants::pi<double>() - fabs(xyz(0)));
   xyz(1) = std::min(fabs(xyz(1)), boost::math::constants::pi<double>() - fabs(xyz(1)));
   xyz(2) = std::min(fabs(xyz(2)), boost::math::constants::pi<double>() - fabs(xyz(2)));
-  bool result = xyz(2) < absolute_z_axis_tolerance_+std::numeric_limits<double>::epsilon()
-    && xyz(1) < absolute_y_axis_tolerance_+std::numeric_limits<double>::epsilon()
-    && xyz(0) < absolute_x_axis_tolerance_+std::numeric_limits<double>::epsilon();
+  bool result = (xyz(2) <= absolute_z_axis_tolerance_+1e-6)
+                && (xyz(1) <= absolute_y_axis_tolerance_+1e-6)
+                && (xyz(0) <= absolute_x_axis_tolerance_+1e-6);
 
   if (verbose)
   {

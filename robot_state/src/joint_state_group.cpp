@@ -903,7 +903,7 @@ double robot_state::JointStateGroup::computeCartesianPath(std::vector<RobotState
   if (test_joint_space_jump) // the joint values we start with
     for (std::size_t k = 0 ; k < joint_state_vector_.size() ; ++k)
       previous_values[k] = joint_state_vector_[k]->getVariableValues();
-
+  std::cout << "robot_state::JointStateGroup::computeCartesianPath: Iterating ..." << std::endl;
   double last_valid_percentage = 0.0;
   Eigen::Quaterniond start_quaternion(start_pose.rotation());
   Eigen::Quaterniond target_quaternion(rotated_target.rotation());
@@ -934,7 +934,10 @@ double robot_state::JointStateGroup::computeCartesianPath(std::vector<RobotState
       }
     }
     else
+    {
+      std::cerr << "setFromIK failed!" << std::endl;
       break;
+    }
     last_valid_percentage = percentage;
   }
 

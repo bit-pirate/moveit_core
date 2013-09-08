@@ -737,8 +737,7 @@ public:
   
   const Eigen::Affine3d& getGlobalLinkTransform(const LinkModel *link) const
   {
-    //assert(checkLinkTransforms());
-    checkLinkTransforms();
+    assert(checkLinkTransforms());
     return global_link_transforms_[link->getLinkIndex()];
   }
   

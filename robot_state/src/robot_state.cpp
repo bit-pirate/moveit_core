@@ -148,6 +148,7 @@ bool moveit::core::RobotState::checkLinkTransforms() const
     logWarn("Returning dirty link transforms");
     return false;
   }
+  logInform("Returning clean link transforms");
   return true;
 }
 
